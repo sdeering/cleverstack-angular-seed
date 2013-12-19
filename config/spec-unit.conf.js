@@ -27,7 +27,6 @@ module.exports = function(config) {
     exclude: [],
 
     /* Start these browsers, currently available:
-
       Chrome
       ChromeCanary
       PhantomJS

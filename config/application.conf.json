@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "port": "9000",
+    "dir": "./app",
+    "liveReloadPort": "35729",
+    "hostname": "localhost"
+  },
+  "test": {
+    "port": "9090",
+    "dir": "./test",
+    "coverage": {
+        "port": "5555",
+        "dir": "./test/coverage/"
+    }
+  },
+  "dist": {
+    "port": "9009",
+    "dir": "./dist"
+  },
+  "docs": {
+    "port": "9999",
+    "dir": "./docs",
+    "showAngularDocs": "true",
+    "showDocularDocs": "true"
+  }
+}

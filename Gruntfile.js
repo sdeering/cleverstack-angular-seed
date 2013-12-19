@@ -15,38 +15,49 @@ module.exports = function (grunt) {
 
   // Grunt helpers
   require('time-grunt')(grunt);
-  require('colors');
+
+  // Settings
+  // var appSettings = require('./config/application.conf.js')(grunt);
+  // console.log(appSettings);
+  // grunt.config.set(settings, appSettings);
 
   grunt.config.init({
 
+    // Make package.json data to be available to grunt
+    pkg: grunt.file.readJSON('package.json'),
+
     // Project settings
-    settings: {
-      dev: {
-        port: 9000,
-        dir: require('./bower.json').appPath || __dirname + '/app',
-        liveReloadPort: 35729,
-        // hostname: '0.0.0.0', // Setting it to '*' or 0.0.0.0 will make the server accessible from anywhere.
-        hostname: 'localhost'
-      },
-      test: {
-        port: 9090,
-        dir: __dirname + '/test',
-        coverage: {
-          port: 5555,
-          dir: __dirname + '/test/coverage/'
-        }
-      },
-      dist: {
-        port: 9009,
-        dir: __dirname + '/dist'
-      },
-      docs: {
-        port: 9999, //default 8000
-        dir: '/docs',
-        showAngularDocs: true,
-        showDocularDocs: true
-      }
-    },
+    // settings: {
+    //   dev: {
+    //     port: 9000,
+    //     dir: require('./bower.json').appPath || __dirname + '/app',
+    //     liveReloadPort: 35729,
+    //     // hostname: '0.0.0.0', // Setting it to '*' or 0.0.0.0 will make the server accessible from anywhere.
+    //     hostname: 'localhost'
+    //   },
+    //   test: {
+    //     port: 9090,
+    //     dir: __dirname + '/test',
+    //     coverage: {
+    //       port: 5555,
+    //       dir: __dirname + '/test/coverage/'
+    //     }
+    //   },
+    //   dist: {
+    //     port: 9009,
+    //     dir: __dirname + '/dist'
+    //   },
+    //   docs: {
+    //     port: 9999, //default 8000
+    //     dir: '/docs',
+    //     showAngularDocs: true,
+    //     showDocularDocs: true
+    //   }
+    // },
+
+    // settings: appSettings,
+
+    settings: grunt.file.readJSON('config/application.conf.json'),
 
     // Server config
     connect: {
@@ -98,62 +109,65 @@ module.exports = function (grunt) {
       coverage: {
         options: {
           base: '<%= settings.test.coverage.dir %>',
+          directory: '<%= settings.test.coverage.dir %>',
           port: '<%= settings.test.coverage.port %>',
-          keepalive: true,
-          middleware: function(connect, options) {
-            var middlewares = [];
-            var directory = options.directory || options.base[options.base.length - 1];
-            if (!Array.isArray(options.base)) {
-              options.base = [options.base];
-            }
-            options.base.forEach(function(base) {
-              // Serve static files.
-              middlewares.push(connect.static(base));
-            });
-            // Make directory browse-able.
-            middlewares.push(connect.directory(directory));
-            return middlewares;
-          }
+          keepalive: true
         }
       }
     },
 
     // Watch config
     watch: {
+      options: {
+        livereload: '<%= connect.options.livereload %>'
+      },
       js: {
-        files: ['{.tmp,<%= settings.dev.dir %>}/scripts/{,*/}*.js'],
+        files: [
+          '{.tmp,<%= settings.dev.dir %>}/scripts/{,*/}*.js',
+          '<%= settings.dev.dir %>/bower_components/sass-bootstrap/js/{,*/}*.js'
+        ],
         tasks: ['newer:jshint:all']
       },
-      jsTest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
-      },
-      compass: {files: ['<%= settings.dist.dir %>/styles/{,*/}*.{scss,sass}'],
+      compass: {
+        files: [
+          '<%= settings.dev.dir %>/styles/{,*/}*.{scss,sass}',
+          '<%= settings.dev.dir %>/bower_components/sass-bootstrap/lib/{,*/}*.{scss,sass}'
+        ],
         tasks: ['compass:server', 'autoprefixer']
       },
       styles: {
-        files: ['<%= settings.dist.dir %>/styles/{,*/}*.css'],
+        files: ['<%= settings.dev.dir %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
-      },
-      gruntfile: {
-        files: ['Gruntfile.js']
       },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= settings.dist.dir %>/{,*/}*.html',
+          '<%= watch.js.files %>',
+          '<%= settings.dev.dir %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
-          '<%= settings.dist.dir %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= settings.dev.dir %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      },
+      gruntfile: {
+        files: ['Gruntfile.js']
+        // tasks: ['default']
+      },
+      jsUnitTest: {
+        files: ['test/spec-unit/{,*/}*.js'],
+        tasks: ['newer:jshint:test', 'karma']
+      },
+      protractor: {
+        files: ['<%= settings.dev.dir %>/scripts/**/*.js','test/spec-e2e/**/*.js'],
+        tasks: ['protractor:auto']
       }
     },
 
     // jsHint config
     jshint: {
       options: {
-        jshintrc: '.jshintrc',
+        jshintrc: __dirname + '/.jshintrc',
         reporter: require('jshint-stylish'),
         force: true
       },
@@ -163,9 +177,9 @@ module.exports = function (grunt) {
       ],
       test: {
         options: {
-          jshintrc: '<%= settings.test.dir %>/.jshintrc'
+          jshintrc: __dirname + '/.jshintrc'
         },
-        src: ['<%= settings.test.dir %>/spec/{,*/}*.js']
+        src: ['<%= settings.test.dir %>/{,*/}*.js']
       }
     },
 
@@ -388,7 +402,7 @@ module.exports = function (grunt) {
         port: '<%= settings.docs.port %>'
     },
 
-    // Test config
+    // unit testing config
     karma: {
       unit: {
         configFile: './config/spec-unit.conf.js',
@@ -415,19 +429,37 @@ module.exports = function (grunt) {
       }
     },
 
+    // e2e protractor testing config
+    protractor: {
+      options: {
+        configFile: "./config/spec-e2e.conf.js"
+      },
+      singlerun: {
+        keepAlive: false
+      },
+      auto: {
+        keepAlive: true,
+        options: {
+          args: {
+            seleniumPort: 4444
+          }
+        }
+      }
+    },
+
     // Open config
     open: {
       dev: {
-        path: 'http://localhost:<%= settings.dev.port %>'
+        path: 'http://<%= settings.dev.hostname %>:<%= settings.dev.port %>'
       },
       prod: {
-        path: 'http://localhost:<%= settings.dist.port %>'
+        path: 'http://<%= settings.dev.hostname %>:<%= settings.dist.port %>'
       },
       docs: {
-        path: 'http://localhost:<%= settings.docs.port %>'
+        path: 'http://<%= settings.dev.hostname %>:<%= settings.docs.port %>'
       },
       coverage: {
-        path: 'http://localhost:<%= settings.test.coverage.port %>'
+        path: 'http://<%= settings.dev.hostname %>:<%= settings.test.coverage.port %>'
       }
     },
 
@@ -438,13 +470,19 @@ module.exports = function (grunt) {
           'server:dev',
           'server:dist',
           'server:docs',
-          'server:test',
-          'info'
+          'server:test'
         ],
         options: {
             logConcurrentOutput: true
         }
       },
+      dev: [
+        'watch:js',
+        'watch:compass',
+        'watch:styles',
+        'watch:livereload',
+        'watch:gruntfile'
+      ],
       test: [
         'compass',
         'copy:styles'
@@ -473,6 +511,7 @@ module.exports = function (grunt) {
     'copy:styles',
     'autoprefixer',
     'connect:livereload',
+    // 'concurrent:dev'
     'watch'
   ]);
 
@@ -481,11 +520,13 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('server:dist', 'Start up the production app preview server.', [
-    'connect:dist'
+    'connect:dist',
+    'open:dist'
   ]);
 
   grunt.registerTask('server:docs', 'Start up the api documentation server.', [
-    'docular-server'
+    'docular-server',
+    'open:docs'
   ]);
 
 
@@ -509,7 +550,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('autotest:unit', 'Start up the auto unit test server.', [
     'test:prepare',
-    'karma:unitAuto'
+    'karma:unitAuto',
+    'watch:jsUnitTest'
   ]);
 
   grunt.registerTask('test:coverage', 'Run a test coverage report.', [
@@ -519,6 +561,14 @@ module.exports = function (grunt) {
     'connect:coverage'
   ]);
 
+  grunt.registerTask('test:e2e', 'Single run of end to end (e2e) tests using protractor.', [
+    'protractor:singlerun'
+  ]);
+
+  grunt.registerTask('autotest:e2e', 'Start up the auto end to end (e2e) test server using protractor.', [
+    'protractor:auto',
+    'watch:protractor'
+  ]);
 
 
   /* -- BUILD TASKS ----------------------------------------------- */
@@ -550,31 +600,10 @@ module.exports = function (grunt) {
   ]);
 
 
-
   /* -- DEFAULT TASK --------------------------------------------- */
 
   grunt.registerTask('default', 'Run all servers.', [
     'server'
   ]);
-
-
-
-  /* -- OUTPUT TASKS --------------------------------------------- */
-
-  grunt.registerTask('info', 'Show server information.', function () {
-    var settings = grunt.config.get('settings');
-    grunt.log.writeln('~');
-    grunt.log.writeln('|' + 'Development server '.bold + 'running at '.grey + 'http://' + settings.dev.hostname + ':' + settings.dev.port);
-    grunt.log.writeln('|' + 'Testing (e2e) server '.bold + 'running at '.grey + 'http://' + settings.dev.hostname + ':' + settings.test.port);
-    grunt.log.writeln('|' + 'Production server '.bold + 'running at '.grey + 'http://' + settings.dev.hostname + ':' + settings.dist.port);
-    grunt.log.writeln('|' + 'Documentation server '.bold + 'running at '.grey + 'http://' + settings.dev.hostname + ':' + settings.docs.port);
-    grunt.log.writeln('~');
-  });
-
-
-  /* -- SETUP TASKS --------------------------------------------- */
-
-
-
 
 };
