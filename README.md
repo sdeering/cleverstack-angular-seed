@@ -1,4 +1,7 @@
-# CleverStack Angular Seed
+CleverStack Angular Seed
+====================
+
+![CleverStack Angular Seed"](app/images/cleverstack-angular.png "CleverStack Angular Seed")
 
 This Angular Seed provides you with a cutting edge AngularJS development workflow. It's been designed to provide you with a super fast test driven front-end development lifecycle. Everything you need is just one command away, if it's not please open an issue or fork and submit a pull request.
 
@@ -31,7 +34,7 @@ It also supports:
 * CoffeeScript, SASS/LESS, Source Maps
 
 
-# Commands
+## Commands
 
 'grunt server' - start dev server, docs server, prod preview server & auto unit testing server. Use this when doing everyday developing while auto testing alongside
 
@@ -52,46 +55,46 @@ It also supports:
 'grunt docs:build' - build the api documentation
 
 
-# Servers
+## Servers
 
-## Development Server
+### Development Server
 Runs on default port: 9000
 This provides you with a nicely automated workflow with AngularJS. On save it provides live page reload, jshint code syntax checking, source maps support, SASS file compilation & autoprefixing of css styles for legacy browsers.
 
-## API Documentation Server
+### API Documentation Server
 Runs on default port: 9999
 This provides API documentation for your AngularJS app.
 
-## Unit Testing Server
+### Unit Testing Server
 Runs on default port: 9090
 This provides automated unit testing for AngularJS using Karma test runner. You can also
 
-## Unit Testing Code Coverage Server
+### Unit Testing Code Coverage Server
 Runs on default port: 5555
 This provides code coverage reports for unit tests which are served off port 5555.
 
-## End-to-end Testing Server
+### End-to-end Testing Server
 Runs on default port: 9000
 This uses Selenuim WebDriver & AngularJS Protractor Framework to automate actual browser e2e testing.
 
-## Production Preview Server
+### Production Preview Server
 Runs on default port: 9009
 This provides a quick way to view your latest production build.
 
 
-# Builds
+## Builds
 
-## Production Build
+### Production Build
 You can build a production ready version of your app in seconds by running the 'grunt build' command. This will process any abstractions your using such as coffeescript, minify all your assets, provide image compression and place everything into the dist directory. This can then instantly view the app using the production preview server on port 9009.
 
-## API Documentation Build
+### API Documentation Build
 You can build the API documentation for your app by running the 'grunt docs:build' command. You can then instantly view the docs using the API Documentation Server on port 9999.
 
-## Unit Testing Code Coverage Build
+### Unit Testing Code Coverage Build
 You can build unit test coverage reports for the browsers specified in your config/spec-unit.conf.js by running the 'grunt test:coverage' command. This will generate the reports in the /test/coverage directory. You can then instantly view the reports using the Code Coverage Server on port 5555.
 
 
-# Configuration
+## Configuration
 
 This is a list of the files which are configurable:
 
@@ -104,7 +107,7 @@ bower.json - add JavaScript dependencies
 package.json - add NPM package dependencies
 
 
-# Directory
+## Directory
 
 This is the main directory structure.
 
@@ -132,7 +135,7 @@ This is the main directory structure.
 
 
 
-# Development Tips
+## Development Tips
 
 * Change your core application Bootstrap 3 styles & scripts here:
 
@@ -148,7 +151,7 @@ app/styles/*.scss
 * Only write e2e tests for things that truely need it. If you are unsure what to e2e for then read up on some AngularJS testing techniques.
 
 
-# FAQ Grunt
+## FAQ Grunt
 
 Where do I add new grunt tasks?
 
@@ -159,7 +162,7 @@ Does grunt support HTTPS?
 Yes but you will need to make some modifications to the server options in the Gruntfile.js file. See here for details: https://github.com/gruntjs/grunt-contrib-connect
 
 
-# FAQ Unit & e2e Testing
+## FAQ Unit & e2e Testing
 
 Does grunt support HTTPS?
 
