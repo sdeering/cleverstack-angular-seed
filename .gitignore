@@ -5,3 +5,5 @@ dist
 bower_components
 docs
 test/coverage
+test/phantomjs-1.9.2-windows
+test/selenium
