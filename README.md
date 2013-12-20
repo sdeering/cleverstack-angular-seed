@@ -293,6 +293,11 @@ links: http://karma-runner.github.io/0.10/intro/faq.html, https://github.com/kar
 
 We could have chosen any of them as a matter of preference such as jamine or qunit. We chose Mocha because we want to keep it consistent with testing our front-end AngularJS and back-end NodeJS. Mocha is the "new kid on the block" and lots of new projects are starting to use it. Karma does support jasmine quite well. Join the debate https://github.com/yeoman/yeoman/issues/117 And if Paul Irish says it's good then I trust in my idols! :D "The reasons you give for dropping jasmine are sound.Let's do it". - Paul Irish
 
+**Why both Karma and Protractor? When do I use which?**
+
+Karma is a great tool for unit testing, and Protractor is intended for end to end or integration testing. This means that small tests for the logic of your individual controllers, directives, and services should be run using Karma. Big tests in which you have a running instance of your entire application should be run using Protractor. Protractor is intended to run tests from a user's point of view - if your test could be written down as instructions for a human interacting with your application, it should be an end to end test written with Protractor. Source: [Protractor Docs FAQ](https://github.com/angular/protractor/blob/23f84b77c5f1842923302e39cadfef06da0517b0/docs/faq.md)
+
+
 **Does it support normal CSS as well as SASS?**
 
 Yes. And it uses autoprofixer so you don't need to worry about adding legacy browser prefixes. It does this all for you - browsers controlled in the config.
