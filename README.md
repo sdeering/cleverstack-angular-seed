@@ -212,7 +212,9 @@ We could have chosen any of them as a matter of preference such as jamine or qun
 
 Yes. And it uses autoprofixer so you don't need to worry about adding legacy browser prefixes. It does this all for you - browsers controlled in the config.
 
+## License
 
-Lineman is copyright of Test Double and is licensed under the MIT License.
+CleverStack is copyright of [Clevertech](http://clevertech.biz) and is licensed under the MIT License.
+
 -----
 I'm documentation! Sometimes I fail. If you see this please fix me and submit a pull request =).
