@@ -36,11 +36,12 @@ To install the angular app run the following commands:
 3. `$ grunt install`
 4. `$ grunt server`
 
+If you get stuck with your installation check out the trobleshooting section below.
+
+
 ## Prerequisites
 
 1. [NodeJS](http://nodejs.org) (v0.8+) & [NPM](http://npmjs.org/)
-
-If you get stuck with your installation check out the trobleshooting section below.
 
 
 ## Commands
