@@ -38,7 +38,9 @@ To install the angular app run the following commands:
 
 ## Prerequisites
 
-1. NodeJS (v0.8+) & NPM
+1. [NodeJS](http://nodejs.org) (v0.8+) & [NPM](http://npmjs.org/)
+
+If you get stuck with your installation check out the trobleshooting section below.
 
 
 ## Commands
@@ -192,6 +194,49 @@ You can build a production ready version of your app in seconds by running the `
 * Write unit tests for every piece of code you write and have the unit test server running in the background to automatically test your code. As a developer it is your responsiblity to test the code you write. And this way you can prove it works!
 
 * Only write e2e tests for things that truely need it. If you are unsure what to e2e for then read up on some AngularJS testing techniques.
+
+
+## Troubleshooting
+
+### Installing NodeJS & NPM
+
+
+
+### Installing Selenium, WebDriver & Protractor
+
+The easiest way is to install Selenium Server using the [Protractor NPM package](https://github.com/angular/protractor):
+
+`$ npm install -g protractor`
+
+**Note:** You may need to update the Chrome Driver location in `config/spec-e2e.conf.json` depending on the OS your running.
+
+<pre>
+chromeDriver: './test/selenium/chromedriver-win32' // Windows
+chromeDriver: './test/selenium/chromedriver-mac32' // Mac
+chromeDriver: './test/selenium/chromedriver-linux32' // Linux
+</pre>
+
+
+It's faster if you have the Selenium Server running in a sepereate terminal (optional).
+
+`$ webdriver-manager`
+`$ webdriver-manager start`
+
+Then you can run the following in your main terminal to get the automated e2e testing running.
+
+`$ grunt autotest:e2e`
+
+
+**OR**
+
+You can manually download the [latest Selenium Server .jar](https://code.google.com/p/selenium/downloads/list) file and the [latest Chrome Driver](http://chromedriver.storage.googleapis.com/index.html) for 
+
+Then update `config/spec-e2e.conf.json` with the following:
+
+<pre>
+seleniumServerJar: '<path to selenium server .jar>',   //it also can be the absolute path or relative to project.
+chromeDriver: '<path to chrome driver .exe>'
+<pre>
 
 
 ## FAQ Grunt
