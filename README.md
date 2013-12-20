@@ -203,6 +203,21 @@ You can build a production ready version of your app in seconds by running the `
 
 
 
+
+### Installing Bower
+
+You can install bower using NPM as follows:
+
+`$ npm install -g bower`
+
+Then install your dependencies like so:
+
+`$ bower install`
+
+The path the dependencies are installed to is specified in `.bowerrc`. We recommend not changing this as it will alter settings your development server and build process.
+
+
+
 ### Installing Selenium, WebDriver & Protractor
 
 The easiest way is to install Selenium Server using the [Protractor NPM package](https://github.com/angular/protractor):
@@ -240,7 +255,7 @@ chromeDriver: '<path to chrome driver .exe>'
 </pre>
 
 
-## FAQ Grunt
+## FAQ - Grunt
 
 **Where do I add new grunt tasks?**
 
@@ -251,7 +266,7 @@ At the moment you will need to extend the Gruntfile.js. You can add options in t
 Yes but you will need to make some modifications to the server options in the Gruntfile.js file. See here for details: https://github.com/gruntjs/grunt-contrib-connect
 
 
-## FAQ Unit & e2e Testing
+## FAQ - Unit & E2E Testing
 
 **Does grunt support HTTPS?**
 
@@ -273,6 +288,21 @@ We could have chosen any of them as a matter of preference such as jamine or qun
 **Does it support normal CSS as well as SASS?**
 
 Yes. And it uses autoprofixer so you don't need to worry about adding legacy browser prefixes. It does this all for you - browsers controlled in the config.
+
+## FAQ - Bower
+
+**Is bower_components required in my dist directory?**
+
+Currently yes. We are looking at removing it in the future to make the dist directory leaner.
+
+
+## FAQ - Misc
+
+**What is .editorconfig used for?**
+
+This file is used to specify consistent coding styles between the developers on your project. Read more at http://editorconfig.org
+
+
 
 ## License
 
