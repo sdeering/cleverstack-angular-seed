@@ -3,7 +3,12 @@ CleverStack Angular Seed
 
 ![CleverStack Angular Seed"](app/images/cleverstack-angular.png "CleverStack Angular Seed")
 
-This Angular Seed provides you with a cutting edge AngularJS development workflow. It's been designed to provide you with a super fast test driven front-end development lifecycle. Everything you need is just one command away, if it's not please open an issue or fork and submit a pull request.
+
+<blockquote>
+CleverStack Angular Seed provides you with a cutting edge AngularJS development workflow. It's been designed to provide you with a super fast test driven front-end development lifecycle. Everything you need is just one command away, if it's not please open an issue or fork and submit a pull request.
+</blockquote>
+
+
 
 ## Features
 
