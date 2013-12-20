@@ -1,6 +1,6 @@
 # CleverStack Angular Seed
 
-This Angular Seed provides you with a cutting edge AngularJS development workflow.
+This Angular Seed provides you with a cutting edge AngularJS development workflow. It's been designed to provide you with a super fast test driven front-end development lifecycle. Everything you need is just one command away, if it's not please open an issue or fork and submit a pull request.
 
 It features the following:
 
@@ -90,6 +90,48 @@ You can build the API documentation for your app by running the 'grunt docs:buil
 ## Unit Testing Code Coverage Build
 You can build unit test coverage reports for the browsers specified in your config/spec-unit.conf.js by running the 'grunt test:coverage' command. This will generate the reports in the /test/coverage directory. You can then instantly view the reports using the Code Coverage Server on port 5555.
 
+
+# Configuration
+
+This is a list of the files which are configurable:
+
+config/application.conf.json - settings for setting application
+config/environment.conf.json - settings for setting up your environment
+config/spec-unit.conf.json - settings for your unit tests
+config/spec-e2e.conf.json - settings for your e2e tests
+Gruntfile.js - core grunt task runner be sure you know what your doing when changing this!
+bower.json - add JavaScript dependencies
+package.json - add NPM package dependencies
+
+
+# Directory
+
+This is the main directory structure.
+
+├── app/                // app folder contains your angular app development files
+│
+├── config/             // config folder contains all configs for your app
+│
+├── dist/               // dist folder contains the latest production build of your app
+│
+├── docs/               // docs folder contains the latest build of app's api docs
+│
+├── test/               // test folder contains all your app test specs
+│
+├── .bowerrc            // stores bower appPath
+├── .gitignore          // files to be ignored by git
+├──  .jshintrc          // settings for your jshint checks
+├── .sass-cache         // (dir) temporary files (sass)
+├── .tmp                // (dir) temporary files (generated styles etc...)
+├── .travis.yml         // app CI build status
+├── bower.json          // app javascript dependencies
+├── Gruntfile.js        // master grunt configuration for running tasks
+├── package.json        // app dependencies / npm packages
+├── LICENSE             // app license
+├── README.md           // app readme
+
+
+
 # Development Tips
 
 * Change your core application Bootstrap 3 styles & scripts here:
@@ -106,14 +148,39 @@ app/styles/*.scss
 * Only write e2e tests for things that truely need it. If you are unsure what to e2e for then read up on some AngularJS testing techniques.
 
 
-# Configuration
+# FAQ Grunt
 
-This is a list of the files which are configurable:
+Where do I add new grunt tasks?
 
-config/application.conf.json - settings for setting application
-config/environment.conf.json - settings for setting up your environment
-config/spec-unit.conf.json - settings for your unit tests
-config/spec-e2e.conf.json - settings for your e2e tests
-Gruntfile.js - core grunt task runner be sure you know what your doing when changing this!
-bower.json - add JavaScript dependencies
-package.json - add NPM package dependencies
+At the moment you will need to extend the Gruntfile.js. You can add options in the config/*.conf.js files to make life easier when developing.
+
+Does grunt support HTTPS?
+
+Yes but you will need to make some modifications to the server options in the Gruntfile.js file. See here for details: https://github.com/gruntjs/grunt-contrib-connect
+
+
+# FAQ Unit & e2e Testing
+
+Does grunt support HTTPS?
+
+Yes but you will need to make some modifications to the server options in the Gruntfile.js file. See here for details: https://github.com/gruntjs/grunt-contrib-connect
+
+When running karma unit tests I'm getting an error from the browser, how can I debug it?
+
+Go to the captured browser and click the "DEBUG" button (or open http://localhost:9876/debug.html) and use the web inspector to see what's going on. (You may need to refresh the debug.html page for it to kick in once the web inspector is open.)
+
+Can karma run qunit, jasmine, mocha/chai out of the box or are additional grunt plugins required?
+
+Karma is test framework/syntax agnostic. We use jasmine as default but then are all supported.
+links: http://karma-runner.github.io/0.10/intro/faq.html, https://github.com/karma-runner/karma/tree/master/test/e2e
+
+Why did you choose mocha as default unit testing framework?
+
+We could have chosen any of them as a matter of preference such as jamine or qunit. We chose Mocha because we want to keep it consistent with testing our front-end AngularJS and back-end NodeJS. Mocha is the "new kid on the block" and lots of new projects are starting to use it. Karma does support jasmine quite well. Join the debate https://github.com/yeoman/yeoman/issues/117 And if Paul Irish says it's good then I trust in my idols! :D "The reasons you give for dropping jasmine are sound.Let's do it". - Paul Irish
+
+Does it support normal CSS as well as SASS?
+
+Yes. And it uses autoprofixer so you don't need to worry about adding legacy browser prefixes. It does this all for you - browsers controlled in the config.
+
+-----
+I'm documentation! Sometimes I fail. If you see this please fix me and submit a pull request =).
