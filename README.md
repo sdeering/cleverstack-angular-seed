@@ -27,36 +27,100 @@ It also includes out of the box:
 * [Bootstrap 3](http://getbootstrap.com/) - the most popular front-end framework.
 * [COMPASS](http://compass-style.org/) - the most feature full CSS framework.
 
+## Install
+
+To install the angular app run the following commands:
+
+1. `$ git clone https://github.com/clevertech/cleverstack-angular-seed.git my-angular-app`
+2. `$ cd my-angular-app`
+3. `$ grunt install`
+4. `$ grunt server`
+
+## Prerequisites
+
+1. NodeJS (v0.8+) & NPM
+
 
 ## Commands
 
 Run these commands from your favourite terminal:
 
-`grunt server` - start dev server, docs server, prod preview server & auto unit testing server. Use this when doing everyday developing while auto testing alongside
+`$ grunt server` - start dev server, docs server, prod preview server & auto unit testing server. Use this when doing everyday developing while auto testing alongside
 
-`grunt server:dev` - start only the dev server
+`$ grunt server:dev` - start only the dev server
 
-`grunt server:test` - start only the auto unit test server
+`$ grunt server:test` - start only the auto unit test server
 
-`grunt server:dist` - start only the prod preview server
+`$ grunt server:dist` - start only the prod preview server
 
-`grunt server:docs` - start only the docs server
+`$ grunt server:docs` - start only the docs server
 
-`grunt test` - start the auto unit test server, alias for 'grunt autotest:unit'
+`$ grunt test` - start the auto unit test server, alias for 'grunt autotest:unit'
 
-`grunt test:unit` - single run on unit tests
+`$ grunt test:unit` - single run on unit tests
 
-`grunt test:coverage` - run a unit test coverage report
+`$ grunt test:coverage` - run a unit test coverage report
 
-`grunt test:e2e` - single run of e2e tests
+`$ grunt test:e2e` - single run of e2e tests
 
-`grunt autotest:e2e` - start the auto e2e unit test server
+`$ grunt autotest:e2e` - start the auto e2e unit test server
 
-`grunt build` - build a production ready app
+`$ grunt build` - build a production ready app
 
-`grunt docs` - build the docs and start the docs server
+`$ grunt docs` - build the docs and start the docs server
 
-`grunt docs:build` - build the api documentation
+`$ grunt docs:build` - build the api documentation
+
+
+
+## Configuration
+
+This is a list of the files which are configurable:
+
+`config/application.conf.json` - settings for setting application
+
+`config/environment.conf.json` - settings for setting up your environment
+
+`config/spec-unit.conf.json` - settings for your unit tests
+
+`config/spec-e2e.conf.json` - settings for your e2e tests
+
+`Gruntfile.js` - core grunt task runner be sure you know what your doing when changing this!
+
+`bower.json` - add JavaScript dependencies
+
+`package.json` - add NPM package dependencies
+
+
+
+## Directory
+
+This is the main directory structure.
+
+<pre>
+├── app/                // app folder contains your angular app development files
+│
+├── config/             // config folder contains all configs for your app
+│
+├── dist/               // dist folder contains the latest production build of your app
+│
+├── docs/               // docs folder contains the latest build of app's api docs
+│
+├── test/               // test folder contains all your app test specs
+│
+├── .bowerrc            // stores bower appPath
+├── .gitignore          // files to be ignored by git
+├──  .jshintrc          // settings for your jshint checks
+├── .sass-cache         // (dir) temporary files (sass)
+├── .tmp                // (dir) temporary files (generated styles etc...)
+├── .travis.yml         // app CI build status
+├── bower.json          // app javascript dependencies
+├── Gruntfile.js        // master grunt configuration for running tasks
+├── package.json        // app dependencies / npm packages
+├── LICENSE             // app license
+├── README.md           // app readme
+</pre>
+
 
 
 ## Servers
@@ -91,54 +155,6 @@ Runs on default port: `9009`
 
 This provides a quick way to view your latest production build.
 
-
-
-## Configuration
-
-This is a list of the files which are configurable:
-
-`config/application.conf.json` - settings for setting application
-
-`config/environment.conf.json` - settings for setting up your environment
-
-`config/spec-unit.conf.json` - settings for your unit tests
-
-`config/spec-e2e.conf.json` - settings for your e2e tests
-
-`Gruntfile.js` - core grunt task runner be sure you know what your doing when changing this!
-
-`bower.json` - add JavaScript dependencies
-
-`package.json` - add NPM package dependencies
-
-
-## Directory
-
-This is the main directory structure.
-
-<pre>
-├── app/                // app folder contains your angular app development files
-│
-├── config/             // config folder contains all configs for your app
-│
-├── dist/               // dist folder contains the latest production build of your app
-│
-├── docs/               // docs folder contains the latest build of app's api docs
-│
-├── test/               // test folder contains all your app test specs
-│
-├── .bowerrc            // stores bower appPath
-├── .gitignore          // files to be ignored by git
-├──  .jshintrc          // settings for your jshint checks
-├── .sass-cache         // (dir) temporary files (sass)
-├── .tmp                // (dir) temporary files (generated styles etc...)
-├── .travis.yml         // app CI build status
-├── bower.json          // app javascript dependencies
-├── Gruntfile.js        // master grunt configuration for running tasks
-├── package.json        // app dependencies / npm packages
-├── LICENSE             // app license
-├── README.md           // app readme
-</pre>
 
 
 ## API Documentation
