@@ -209,7 +209,7 @@ The easiest way is to install Selenium Server using the [Protractor NPM package]
 
 `$ npm install -g protractor`
 
-**Note:** You may need to update the Chrome Driver location in `config/spec-e2e.conf.json` depending on the OS your running.
+**Note:** You may need to update the [latest Chrome Driver](http://chromedriver.storage.googleapis.com/index.html) location in `config/spec-e2e.conf.json` depending on the OS your running. When you download it, extract and rename ending in .exe so will be an application.
 
 <pre>
 chromeDriver: './test/selenium/chromedriver-win32' // Windows
