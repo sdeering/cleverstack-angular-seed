@@ -250,8 +250,8 @@ You can manually download the [latest Selenium Server .jar](https://code.google.
 Then update `config/spec-e2e.conf.json` with the following:
 
 <pre>
-seleniumServerJar: '<path to selenium server .jar>',   //it also can be the absolute path or relative to project.
-chromeDriver: '<path to chrome driver .exe>'
+seleniumServerJar: 'path to selenium server .jar',   //absolute path or relative to project.
+chromeDriver: 'path to chrome driver .exe'
 </pre>
 
 
