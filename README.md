@@ -206,7 +206,10 @@ You can build a production ready version of your app in seconds by running the `
 
 ### Installing NodeJS & NPM
 
+If your having problems installing NodeJS we recommend taking a look at the following:
 
+* http://www.joyent.com/blog/installing-node-and-npm
+* https://gist.github.com/isaacs/579814
 
 
 ### Installing Bower
