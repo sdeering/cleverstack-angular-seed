@@ -13,5 +13,12 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import 'partials/home';
 @import 'partials/login';
 @import 'partials/register';
+@import 'partials/dashboard';
+@import 'partials/header';
+@import 'partials/footer';
+@import 'partials/navbar';
 
-/* Include your custom author styles here */
+/*
+    Include your custom author styles below.
+    For help with SASS see here: http://sass-lang.com/documentation/file.SASS_REFERENCE.html
+*/

@@ -195,7 +195,7 @@ You can build a production ready version of your app in seconds by running the `
 * Add additional styles here:
 
    `app/styles/*.scss`
-   
+
 
 * Write unit tests for every piece of code you write and have the unit test server running in the background to automatically test your code. As a developer it is your responsiblity to test the code you write. And this way you can prove it works!
 
@@ -241,9 +241,8 @@ chromeDriver: './test/selenium/chromedriver-linux32' // Linux
 </pre>
 
 
-It's faster if you have the Selenium Server running in a sepereate terminal (optional).
+The latest version of Selenium 2 comes with web driver. It's faster if you have the Selenium Server running in a sepereate terminal (optional) you can do this running this command:
 
-`$ webdriver-manager`
 `$ webdriver-manager start`
 
 Then you can run the following in your main terminal to get the automated e2e testing running.
@@ -251,15 +250,13 @@ Then you can run the following in your main terminal to get the automated e2e te
 `$ grunt autotest:e2e`
 
 
-**OR**
+**OR install them manually**
 
-You can manually download the [latest Selenium Server .jar](https://code.google.com/p/selenium/downloads/list) file and the [latest Chrome Driver](http://chromedriver.storage.googleapis.com/index.html) for 
-
-Then update `config/spec-e2e.conf.json` with the following:
+You can manually download the [latest Selenium Server .jar](https://code.google.com/p/selenium/downloads/list) file and the [latest Chrome Driver](http://chromedriver.storage.googleapis.com/index.html). Put the files into `/test/selenium/` and update your `config/spec-e2e.conf.json` with the following:
 
 <pre>
-seleniumServerJar: 'path to selenium server .jar',   //absolute path or relative to project.
-chromeDriver: 'path to chrome driver .exe'
+seleniumServerJar: '../test/selenium/selenium-server-standalone-2.39.0.jar',   //absolute path or relative to project.
+chromeDriver: '../test/selenium/chromedriver'
 </pre>
 
 

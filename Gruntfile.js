@@ -10,54 +10,26 @@
 
 module.exports = function (grunt) {
 
+  // Grunt helpers
+  require('time-grunt')(grunt);
+  require('autostrip-json-comments');
+
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
-  // Grunt helpers
-  require('time-grunt')(grunt);
-
   // Settings
-  // var appSettings = require('./config/application.conf.js')(grunt);
-  // console.log(appSettings);
-  // grunt.config.set(settings, appSettings);
+  var appSettings = require('./config/application.conf.json'),
+      envSettings = require('./config/environment.conf.json');
 
-  grunt.config.init({
+  // grunt.config.init({
+  grunt.initConfig({
 
     // Make package.json data to be available to grunt
     pkg: grunt.file.readJSON('package.json'),
 
-    // Project settings
-    // settings: {
-    //   dev: {
-    //     port: 9000,
-    //     dir: require('./bower.json').appPath || __dirname + '/app',
-    //     liveReloadPort: 35729,
-    //     // hostname: '0.0.0.0', // Setting it to '*' or 0.0.0.0 will make the server accessible from anywhere.
-    //     hostname: 'localhost'
-    //   },
-    //   test: {
-    //     port: 9090,
-    //     dir: __dirname + '/test',
-    //     coverage: {
-    //       port: 5555,
-    //       dir: __dirname + '/test/coverage/'
-    //     }
-    //   },
-    //   dist: {
-    //     port: 9009,
-    //     dir: __dirname + '/dist'
-    //   },
-    //   docs: {
-    //     port: 9999, //default 8000
-    //     dir: '/docs',
-    //     showAngularDocs: true,
-    //     showDocularDocs: true
-    //   }
-    // },
-
-    // settings: appSettings,
-
-    settings: grunt.file.readJSON('config/application.conf.json'),
+    // Set the application settings
+    settings: appSettings,
+    env: envSettings,
 
     // Server config
     connect: {
@@ -123,20 +95,20 @@ module.exports = function (grunt) {
       },
       js: {
         files: [
-          '{.tmp,<%= settings.dev.dir %>}/scripts/{,*/}*.js',
-          '<%= settings.dev.dir %>/bower_components/sass-bootstrap/js/{,*/}*.js'
+          '{.tmp,<%= settings.dev.dir %>}/scripts/**/*.js',
+          '<%= settings.dev.dir %>/bower_components/sass-bootstrap/js/**/*.js'
         ],
         tasks: ['newer:jshint:all']
       },
       compass: {
         files: [
-          '<%= settings.dev.dir %>/styles/{,*/}*.{scss,sass}',
-          '<%= settings.dev.dir %>/bower_components/sass-bootstrap/lib/{,*/}*.{scss,sass}'
+          '<%= settings.dev.dir %>/styles/**/*.{scss,sass}',
+          '<%= settings.dev.dir %>/bower_components/sass-bootstrap/lib/**/*.{scss,sass}'
         ],
         tasks: ['compass:server', 'autoprefixer']
       },
       styles: {
-        files: ['<%= settings.dev.dir %>/styles/{,*/}*.css'],
+        files: ['<%= settings.dev.dir %>/styles/**/*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       livereload: {
@@ -145,9 +117,9 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= watch.js.files %>',
-          '<%= settings.dev.dir %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '<%= settings.dev.dir %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= settings.dev.dir %>/**/*.html',
+          '.tmp/styles/**/*.css',
+          '<%= settings.dev.dir %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       },
       gruntfile: {
@@ -155,7 +127,7 @@ module.exports = function (grunt) {
         // tasks: ['default']
       },
       jsUnitTest: {
-        files: ['test/spec-unit/{,*/}*.js'],
+        files: ['test/spec-unit/**/*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
       protractor: {
@@ -173,13 +145,13 @@ module.exports = function (grunt) {
       },
       all: [
         // 'Gruntfile.js',
-        '<%= settings.dev.dir %>/scripts/{,*/}*.js'
+        '<%= settings.dev.dir %>/scripts/**/*.js'
       ],
       test: {
         options: {
           jshintrc: __dirname + '/.jshintrc'
         },
-        src: ['<%= settings.test.dir %>/{,*/}*.js']
+        src: ['<%= settings.test.dir %>/**/*.js']
       }
     },
 
@@ -192,7 +164,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
+          src: '**/*.css',
           dest: '.tmp/styles/'
         }]
       }
@@ -239,7 +211,8 @@ module.exports = function (grunt) {
         }]
       },
       server: '.tmp',
-      docs: '<%= settings.docs.dir %>'
+      docs: '<%= settings.docs.dir %>',
+      coverage: '<%= settings.test.coverage.dir %>'
     },
 
     // Copy config
@@ -254,7 +227,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             'bower_components/**/*',
-            'images/{,*/}*.{webp}',
+            'images/**/*.{webp}',
             'fonts/*'
           ]
         }, {
@@ -270,7 +243,7 @@ module.exports = function (grunt) {
         expand: true,
         cwd: '<%= settings.dev.dir %>/styles',
         dest: '.tmp/styles/',
-        src: '{,*/}*.css'
+        src: '**/*.css'
       }
     },
 
@@ -279,9 +252,9 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            '<%= settings.dist.dir %>/scripts/{,*/}*.js',
-            '<%= settings.dist.dir %>/styles/{,*/}*.css',
-            '<%= settings.dist.dir %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= settings.dist.dir %>/scripts/**/*.js',
+            '<%= settings.dist.dir %>/styles/**/*.css',
+            '<%= settings.dist.dir %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= settings.dist.dir %>/styles/fonts/*'
           ]
         }
@@ -296,8 +269,8 @@ module.exports = function (grunt) {
       }
     },
     usemin: {
-      html: ['<%= settings.dist.dir %>/{,*/}*.html'],
-      css: ['<%= settings.dist.dir %>/styles/{,*/}*.css'],
+      html: ['<%= settings.dist.dir %>/**/*.html'],
+      css: ['<%= settings.dist.dir %>/styles/**/*.css'],
       options: {
         assetsDirs: ['<%= settings.dist.dir %>']
       }
@@ -309,7 +282,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= settings.dev.dir %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: '**/*.{png,jpg,jpeg,gif}',
           dest: '<%= settings.dist.dir %>/images'
         }]
       }
@@ -319,7 +292,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= settings.dev.dir %>/images',
-          src: '{,*/}*.svg',
+          src: '**/*.svg',
           dest: '<%= settings.dist.dir %>/images'
         }]
       }
@@ -420,7 +393,7 @@ module.exports = function (grunt) {
         singleRun: true,
         reporters: ['progress', 'coverage'],
         preprocessors: {
-          'app/scripts/*.js': ['coverage']
+          'app/scripts/**/*.js': ['coverage']
         },
         coverageReporter: {
           type : 'html',
@@ -470,7 +443,9 @@ module.exports = function (grunt) {
           'server:dev',
           'server:dist',
           'server:docs',
-          'server:test'
+          'server:test:unit',
+          'server:test:e2e',
+          'server:coverage'
         ],
         options: {
             logConcurrentOutput: true
@@ -494,6 +469,60 @@ module.exports = function (grunt) {
         'svgmin',
         'htmlmin'
       ]
+    },
+
+    // Shell commands
+    shell: {
+      options: {
+        stdout: true,
+        async: false
+      },
+      // Install locally dev dependencies in package.json (node_modules/*)
+      npm_install: {
+        command: 'npm install'
+      },
+      // Install locally bower components (app/bower_components/*)
+      bower_install: {
+        command: 'bower install'
+      },
+      // Download latest version of selenium server
+      // https://code.google.com/p/selenium/downloads/list
+      // ALL -> http://selenium.googlecode.com/files/selenium-server-2.39.0.zip
+      // JAR -> http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
+      selenium_install: {
+        // todo: download selenium 2 .jar file based on environment
+        command: ''
+        // execOptions: {
+        //   cwd: './test/selenium/'
+        // }
+      },
+      // Download latest chrome driver
+      // http://chromedriver.storage.googleapis.com/index.html
+      // Win32 -> http://chromedriver.storage.googleapis.com/2.8/chromedriver_win32.zip
+      // Linux32 -> http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux32.zip
+      // Linux64 -> http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip
+      // Mac32 -> http://chromedriver.storage.googleapis.com/2.8/chromedriver_mac32.zip
+      chromedriver_install: {
+        // todo: download chrome driver .exe based on environment
+        command: ''
+      },
+      // Download latest version of phantomjs
+      // http://phantomjs.org/download.html
+      // Win -> https://phantomjs.googlecode.com/files/phantomjs-1.9.2-windows.zip
+      // Mac -> https://phantomjs.googlecode.com/files/phantomjs-1.9.2-macosx.zip
+      // Linux32 -> https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-i686.tar.bz2
+      // Linux64 -> https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
+      phantomjs_manual_install: {
+        // todo: download phantomjs .exe based on environment
+        command: ''
+      },
+      // Download latest version of protractor
+      // You need to apply this patch to fix a known bug: https://github.com/angular/protractor/issues/85
+      // https://github.com/vrtdev/protractor/commit/2f18b01378e4f054331df23ce536e4081ee1ccf0
+      protractor_install: {
+        // todo: apply patch to latest version of protractor
+        command: ''
+      }
     }
 
   });
@@ -515,8 +544,16 @@ module.exports = function (grunt) {
     'watch'
   ]);
 
-  grunt.registerTask('server:test', 'Start up the auto unit test server.', [
+  grunt.registerTask('server:test:unit', 'Start up the auto unit test server.', [
     'autotest:unit'
+  ]);
+
+  grunt.registerTask('server:coverage', 'Start up the unit test code coverage server.', [
+    'connect:coverage'
+  ]);
+
+  grunt.registerTask('server:test:e2e', 'Start up the auto unit test server.', [
+    'autotest:e2e'
   ]);
 
   grunt.registerTask('server:dist', 'Start up the production app preview server.', [
@@ -549,13 +586,13 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('autotest:unit', 'Start up the auto unit test server.', [
-    'test:prepare',
+    // 'test:prepare',
     'karma:unitAuto',
     'watch:jsUnitTest'
   ]);
 
   grunt.registerTask('test:coverage', 'Run a test coverage report.', [
-    'test:prepare',
+    // 'test:prepare',
     'karma:unitCoverage',
     'open:coverage',
     'connect:coverage'
@@ -600,10 +637,26 @@ module.exports = function (grunt) {
   ]);
 
 
+  /* -- INSTALL TASKS -------------------------------------------- */
+
+  grunt.registerTask('install', 'Install stuff that is required for development servers.', [
+    "shell:npm_install",
+    "shell:bower_install",
+    "shell:selenium_install",
+    "shell:chromedriver_install",
+    "shell:phantomjs_manual_install",
+    "shell:protractor_install",
+    "build",
+    "docs:build",
+    "karma:unitCoverage"
+  ]);
+
+
   /* -- DEFAULT TASK --------------------------------------------- */
 
   grunt.registerTask('default', 'Run all servers.', [
     'server'
   ]);
+
 
 };

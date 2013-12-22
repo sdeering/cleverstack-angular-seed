@@ -37,7 +37,8 @@ module.exports = function(config) {
 
     */
     browsers: [
-      'Chrome'
+      // 'Chrome'
+      'PhantomJS'
     ],
 
     // level of logging: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
