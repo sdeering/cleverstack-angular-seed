@@ -28,6 +28,8 @@ These are the main features provided by this front-end development workflow:
 
 * LESS, CoffeeScript support.
 * Mocha support.
+* Sourcemaps support.
+* HTML5 push state.
 * More configurations to your default development server.
 
 

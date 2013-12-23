@@ -35,12 +35,12 @@ module.exports = function (grunt) {
     connect: {
       options: {
         hostname: '<%= settings.dev.hostname %>',
+        port: '<%= settings.dev.port %>',
+        livereload: '<%= settings.dev.liveReloadPort %>'
       },
       livereload: {
         options: {
           open: true,
-          port: '<%= settings.dev.port %>',
-          livereload: '<%= settings.dev.liveReloadPort %>',
           base: [
             '.tmp',
             '<%= settings.dev.dir %>'
@@ -50,6 +50,7 @@ module.exports = function (grunt) {
       test: {
         options: {
           port: '<%= settings.test.port %>',
+          livereload: false,
           base: [
             '.tmp',
             'test',
@@ -61,6 +62,7 @@ module.exports = function (grunt) {
         options: {
           port: '<%= settings.dist.port %>',
           base: '<%= settings.dist.dir %>',
+          livereload: false,
           keepalive: true,
           middleware: function(connect, options) {
             var middlewares = [];
@@ -83,16 +85,14 @@ module.exports = function (grunt) {
           base: '<%= settings.test.coverage.dir %>',
           directory: '<%= settings.test.coverage.dir %>',
           port: '<%= settings.test.coverage.port %>',
-          keepalive: true
+          keepalive: true,
+          livereload: false
         }
       }
     },
 
     // Watch config
     watch: {
-      options: {
-        livereload: '<%= connect.options.livereload %>'
-      },
       js: {
         files: [
           '{.tmp,<%= settings.dev.dir %>}/scripts/**/*.js',
@@ -113,7 +113,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
         },
         files: [
           '<%= watch.js.files %>',
