@@ -1,6 +1,8 @@
 CleverStack Angular Seed
 ====================
 
+[![Build Status](https://secure.travis-ci.org/sdeering/cleverstack-angular-seed.png?branch=master)](https://travis-ci.org/sdeering/cleverstack-angular-seed)
+
 ![CleverStack Angular Seed"](app/images/cleverstack-angular.png "CleverStack Angular Seed")
 
 
