@@ -345,30 +345,24 @@ module.exports = function (grunt) {
         showDocularDocs: '<%= settings.docs.showDocularDocs %>',
         showAngularDocs: '<%= settings.docs.showAngularDocs %>',
         groups: [
-        // {
-            // groupTitle: 'CleverStack Angular Seed',
-            // groupId: 'cleverstack',
-            // groupIcon: 'icon-book',
-            // sections: [
-            //     {
-                    // id: "api",
-                    // title: "API",
-                    // showSource: true,
-                    // docs: [
-                    //     "docs-sections/api.doc"
-                    // ],
-                    // scripts: [
-                    //     "app/scripts/app.js",
-                    //     "app/scripts/config.js",
-                    //     "app/scripts/routes.js",
-                    //     "app/scripts/services",
-                    //     "app/scripts/filters",
-                    //     "app/scripts/directives",
-                    //     "app/scripts/controllers"
-                    // ]
-            //     }
-            // ]
-        // }
+        {
+            groupTitle: 'CleverStack Angular',
+            groupId: 'cleverstack',
+            groupIcon: 'icon-book',
+            sections: [
+                {
+                    id: "api",
+                    title: "API",
+                    showSource: true,
+                    docs: [
+                        "api.doc"
+                    ],
+                    scripts: [
+                      "app/scripts/"
+                    ]
+                }
+            ]
+        }
         ]
     },
     'docular-server': {
@@ -399,6 +393,12 @@ module.exports = function (grunt) {
           type : 'html',
           dir : '<%= settings.test.coverage.dir %>'
         }
+      },
+      travis: {
+        configFile: './config/spec-unit.conf.js',
+        autoWatch: false,
+        singleRun: true,
+        browsers: ['PhantomJS']
       }
     },
 
@@ -607,6 +607,10 @@ module.exports = function (grunt) {
     'watch:protractor'
   ]);
 
+  grunt.registerTask('test:travis', 'Single run of unit tests for Travis CI.', [
+    'test:prepare',
+    'karma:travis'
+  ]);
 
   /* -- BUILD TASKS ----------------------------------------------- */
 
@@ -629,6 +633,7 @@ module.exports = function (grunt) {
   /* -- DOCS TASKS ----------------------------------------------- */
 
   grunt.registerTask('docs:build', 'Build the api documentation.', [
+    'clean:docs',
     'docular'
   ]);
   grunt.registerTask('docs', 'Build the docs and start the docs server.', [

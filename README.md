@@ -167,19 +167,19 @@ This provides a quick way to view your latest production build.
 
 ## API Documentation
 
-### API Documentation Build
+### Building Your Documentation
 You can build the API documentation for your app by running the `grunt docs:build` command. You can then instantly view the `/docs` using the API Documentation Server on port `9999`. The documentation is built using [Docular](http://grunt-docular.com/).
 
 
 ## Code Coverage Reports
 
-### Unit Testing Code Coverage Build
+### Running Unit Testing Code Coverage Reports
 You can build unit test coverage reports for the browsers specified in your `config/spec-unit.conf.js` by running the 'grunt test:coverage' command. This will generate the reports in the `/test/coverage` directory. You can then instantly view the reports using the Code Coverage Server on port `5555`. The test coverage report is built using [Karma](http://karma-runner.github.io/) and [Istanbul](https://npmjs.org/package/istanbul).
 
 
 ## Deployment
 
-### Production Build
+### Building A Production Ready Application
 You can build a production ready version of your app in seconds by running the `grunt build` command. This will process any abstractions your using such as coffeescript, minify all your assets, provide image compression and place everything into the `/dist` directory. This can then instantly view the app using the production preview server on port `9009`. You can take this dist folder and serve it anywhere as normal.
 
 
