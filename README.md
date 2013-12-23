@@ -48,7 +48,12 @@ If you get stuck with your installation check out the trobleshooting section bel
 
 ## Prerequisites
 
-1. [NodeJS](http://nodejs.org) (v0.8+) & [NPM](http://npmjs.org/)
+1. [NodeJS & NPM](http://nodejs.org) (v0.8+)
+
+The following should be installed when you run the `$ grunt install` command.
+* [Ruby & COMPASS](https://github.com/sdeering/cleverstack-angular-seed/blob/master/README.md#installing-ruby--compass)
+* [Bower](https://github.com/sdeering/cleverstack-angular-seed/blob/master/README.md#installing-bower)
+* [Selenium WebDriver & Protractor](https://github.com/sdeering/cleverstack-angular-seed/blob/master/README.md#installing-bower)
 
 
 ## Commands
