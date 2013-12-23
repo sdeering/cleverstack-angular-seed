@@ -16,11 +16,19 @@ CleverStack Angular Seed provides you with a cutting edge AngularJS development 
 
 These are the main features provided by this front-end development workflow:
 
-* **Development Server** - Live Reload, jsHint, COMPASS compilation
-* **Unit Testing Server**- Single run and fully automated using Karma & Mocha and generate code Coverage reports.
-* **e2e Testing Server** - Single run and fully automated using Selenuim WebDriver & AngularJS Protractor Framework
-* **API Documentation Server** - AngularJS API Documentation using Docular.
-* **Production Preview Server** - Quick viewing of your latest production build.
+* **Development Server** - Live Reload with jsHint, COMPASS, SASS support
+* **Unit Testing Server** - Run fully automated unit tests with Karma and Jasmine support.
+* **E2E Testing Server** - Run fully automated E2E tests with Selenuim WebDriver & Protractor.
+* **Browserless Testing** - Perform tests without using a browser with PhantomJS.
+* **Code Coverage Reports** - Generate code coverage reports to see what code needs tests written.
+* **API Documentation Server** - Generate AngularJS API documentation with Docular.
+* **Production Preview Server** - Quickly view your latest production build.
+
+### Coming soon
+
+* LESS, CoffeeScript support.
+* Mocha support.
+* More configurations to your default development server.
 
 
 It uses the following web technologies:
@@ -119,23 +127,19 @@ This is the main directory structure.
 │
 ├── dist/               // dist folder contains the latest production build of your app
 │
-├── docs/               // docs folder contains the latest build of app's api docs
-│
 ├── test/               // test folder contains all your app test specs
 │
 ├── .bowerrc            // stores bower appPath
 ├── .gitignore          // files to be ignored by git
 ├──  .jshintrc          // settings for your jshint checks
-├── .sass-cache         // (dir) temporary files (sass)
-├── .tmp                // (dir) temporary files (generated styles etc...)
 ├── .travis.yml         // app CI build status
+├── api.doc             // used solely for api doc generation
 ├── bower.json          // app javascript dependencies
 ├── Gruntfile.js        // master grunt configuration for running tasks
 ├── package.json        // app dependencies / npm packages
 ├── LICENSE             // app license
 ├── README.md           // app readme
 </pre>
-
 
 
 ## Servers
@@ -281,6 +285,7 @@ chromeDriver: './test/selenium/chromedriver-linux32' // Linux
 
 The latest version of Selenium 2 comes with web driver. It's faster if you have the Selenium Server running in a sepereate terminal (optional) you can do this running this command:
 
+`$ cd <project dir>`
 `$ webdriver-manager start`
 
 Then you can run the following in your main terminal to get the automated e2e testing running.
@@ -310,6 +315,10 @@ Yes but you will need to make some modifications to the server options in the Gr
 
 
 ## FAQ - Unit & E2E Testing
+
+**When I click E2E test from homepage it's blank**
+
+This page has been included to show you the Selenium Server Hub you'll need the [webdriver manager running in a seperate console](https://github.com/sdeering/cleverstack-angular-seed#installing-selenium-webdriver--protractor) to see it in action. of The selenium webdriver & protractor E2E testing is constantly improving so expect this to evolve over the coming months.
 
 **Does grunt support HTTPS?**
 

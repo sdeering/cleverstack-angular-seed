@@ -17,6 +17,7 @@ module.exports = function(config) {
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
+      'app/views/**/*.html',
       'app/scripts/*.js', //faster
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
@@ -37,9 +38,24 @@ module.exports = function(config) {
 
     */
     browsers: [
-      // 'Chrome'
       'PhantomJS'
     ],
+
+    // http://karma-runner.github.io/0.8/config/preprocessors.html
+    preprocessors: {
+      'app/views/**/*.html': ['ng-html2js']
+    },
+
+    //https://github.com/karma-runner/karma-ng-html2js-preprocessor
+    ngHtml2JsPreprocessor: {
+      // strip this from the file path
+      stripPrefix: 'app/',
+      // prepend this to the
+      // prependPrefix: '',
+      // setting this option will create only a single module that contains templates
+      // from all the files, so you can load them all with module('foo')
+      // moduleName: 'templates'
+    },
 
     // level of logging: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
     logLevel: config.LOG_INFO,

@@ -23,9 +23,9 @@ angular.module('app')
         $scope.$watch('$location.path()', function(locationPath) {
           var $li, link,
               $liElements = $element.find("li");
-          $.each($liElements, function(i, v)
+          angular.forEach($liElements, function(i, v)
           {
-            $li = $($liElements[i]);
+            $li = angular.element(i);
             link = $li.find("a").attr('href');
             if (link.toLowerCase() == locationPath) {
                $li.addClass("active");

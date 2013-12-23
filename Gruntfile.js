@@ -127,12 +127,14 @@ module.exports = function (grunt) {
         // tasks: ['default']
       },
       jsUnitTest: {
-        files: ['test/spec-unit/**/*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        files: ['test/spec-unit/**/*.js']
+        // tasks: ['newer:jshint:test', 'karma']
+        // tasks: ['karma:unit']
       },
       protractor: {
-        files: ['<%= settings.dev.dir %>/scripts/**/*.js','test/spec-e2e/**/*.js'],
-        tasks: ['protractor:auto']
+        // files: ['<%= settings.dev.dir %>/scripts/**/*.js','test/spec-e2e/**/*.js'],
+        files: ['test/spec-e2e/**/*.js'],
+        tasks: ['protractor:singlerun']
       }
     },
 
@@ -387,7 +389,8 @@ module.exports = function (grunt) {
         singleRun: true,
         reporters: ['progress', 'coverage'],
         preprocessors: {
-          'app/scripts/**/*.js': ['coverage']
+          'app/scripts/**/*.js': ['coverage'],
+          'app/views/**/*.html': ['ng-html2js']
         },
         coverageReporter: {
           type : 'html',
@@ -444,7 +447,7 @@ module.exports = function (grunt) {
           'server:dist',
           'server:docs',
           'server:test:unit',
-          'server:test:e2e',
+          // 'server:test:e2e',
           'server:coverage'
         ],
         options: {
@@ -521,6 +524,12 @@ module.exports = function (grunt) {
       // https://github.com/vrtdev/protractor/commit/2f18b01378e4f054331df23ce536e4081ee1ccf0
       protractor_install: {
         // todo: apply patch to latest version of protractor
+        command: ''
+      },
+      // Install ruby and compass
+      // https://github.com/sdeering/cleverstack-angular-seed/blob/master/README.md#installing-ruby--compass
+      compass_install: {
+        // todo: install ruby and compass based on environment
         command: ''
       }
     }
@@ -599,6 +608,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('test:e2e', 'Single run of end to end (e2e) tests using protractor.', [
+    'connect:livereload',
     'protractor:singlerun'
   ]);
 
@@ -651,6 +661,7 @@ module.exports = function (grunt) {
     "shell:chromedriver_install",
     "shell:phantomjs_manual_install",
     "shell:protractor_install",
+    "shell:compass_install",
     "build",
     "docs:build",
     "karma:unitCoverage"
