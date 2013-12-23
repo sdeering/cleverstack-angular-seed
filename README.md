@@ -227,6 +227,37 @@ Then install your dependencies like so:
 The path the dependencies are installed to is specified in `.bowerrc`. We recommend not changing this as it will alter settings your development server and build process.
 
 
+### Installing Ruby & COMPASS
+
+The easiest way to install COMPASS is through Ruby Gem using RVM.
+
+Using RVM:
+
+<pre>
+$ curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled --ruby=1.9.3
+$ . ~/.profile
+$ source /etc/profile.d/rvm.sh
+$ rvm install 2.0.0
+$ rvm use 2.0.0
+$ ruby -v
+</pre>
+
+**Linux/Debian** you can run this to install ruby:
+
+<pre>
+$ sudo apt-get install ruby
+$ ruby -v
+</pre>
+
+**Windows** users can opt to use the one click installer: http://rubyforge.org/projects/rubyinstaller/
+
+Then install COMPASS through ruby gem:
+
+<pre>
+$ gem update --system
+$ gem install compass
+</pre>
+
 
 ### Installing Selenium, WebDriver & Protractor
 
