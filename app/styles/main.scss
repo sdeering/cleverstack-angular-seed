@@ -1,13 +1,17 @@
 
 /*
   SASS Bootstrap 3
-  Configure your UI styles here: /bower_components/sass-bootstrap/lib/*.scss
-  Test your UI here: http://127.0.0.1:9000/bower_components/sass-bootstrap/js/tests/
-*/
-@import 'sass-bootstrap/lib/bootstrap';
 
-/* Bootstrap 3 Glyphs http://getbootstrap.com/components/#glyphicons */
+  Bootstrap 3 Style Variables: /bower_components/sass-bootstrap/lib/_variables.scss
+  Bootstrap 3 Style Components: /bower_components/sass-bootstrap/lib/*.scss
+  Live Reload UI Page: http://localhost:9000/ui.html
+
+*/
+/* Glyphs http://getbootstrap.com/components/#glyphicons */
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+@import '../bower_components/sass-bootstrap/lib/bootstrap';
+@import '../bower_components/compass-mixins/lib/compass';
 
 /* Partials */
 @import 'partials/home';

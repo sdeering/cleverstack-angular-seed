@@ -116,7 +116,7 @@ module.exports = function (grunt) {
           livereload: true
         },
         files: [
-          '<%= watch.js.files %>',
+          // '<%= watch.js.files %>',
           '<%= settings.dev.dir %>/**/*.html',
           '.tmp/styles/**/*.css',
           '<%= settings.dev.dir %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
@@ -180,11 +180,11 @@ module.exports = function (grunt) {
         generatedImagesDir: '.tmp/images/generated',
         imagesDir: '<%= settings.dev.dir %>/images',
         javascriptsDir: '<%= settings.dev.dir %>/scripts',
-        fontsDir: '<%= settings.dev.dir %>/styles/fonts',
+        fontsDir: '<%= settings.dev.dir %>/fonts',
         importPath: '<%= settings.dev.dir %>/bower_components',
         httpImagesPath: '/images',
         httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
+        httpFontsPath: '/fonts',
         relativeAssets: false,
         assetCacheBuster: false
       },
@@ -257,7 +257,7 @@ module.exports = function (grunt) {
             '<%= settings.dist.dir %>/scripts/**/*.js',
             '<%= settings.dist.dir %>/styles/**/*.css',
             '<%= settings.dist.dir %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= settings.dist.dir %>/styles/fonts/*'
+            '<%= settings.dist.dir %>/fonts/*'
           ]
         }
       }
