@@ -35,7 +35,6 @@
 
   /*
     API Documentation Server
-
   */
   "docs": {
     "port": "9999", // default 9999

@@ -7,7 +7,7 @@ CleverStack Angular Seed [![Build Status](https://secure.travis-ci.org/sdeering/
 
 
 <blockquote>
-CleverStack Angular Seed provides you with a cutting edge AngularJS development workflow. It's been designed to provide you with a super fast test driven front-end development lifecycle. Everything you need is just one command away, if it's not please open an issue or fork and submit a pull request.
+CleverStack Angular Seed provides you with a cutting edge AngularJS development workflow. It's been designed to provide you with a super fast test driven front-end development lifecycle. Everything you need should be just one command away, if it's not please open an issue or fork and submit a pull request.
 </blockquote>
 
 

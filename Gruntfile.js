@@ -18,18 +18,13 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Settings
-  var appSettings = require('./config/application.conf.json'),
-      envSettings = require('./config/environment.conf.json');
+  var appSettings = require('./config/application.conf.json');
 
   // grunt.config.init({
   grunt.initConfig({
 
-    // Make package.json data to be available to grunt
-    pkg: grunt.file.readJSON('package.json'),
-
     // Set the application settings
     settings: appSettings,
-    env: envSettings,
 
     // Server config
     connect: {
@@ -571,8 +566,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('server:docs', 'Start up the api documentation server.', [
-    'docular-server',
-    'open:docs'
+    'docular-server'
   ]);
 
 
@@ -673,6 +667,5 @@ module.exports = function (grunt) {
   grunt.registerTask('default', 'Run all servers.', [
     'server'
   ]);
-
 
 };
